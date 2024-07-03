@@ -1,0 +1,11 @@
+version: "3"
+services:
+  rest-number:
+    image: "rest-number:latest"
+    ports:
+      - "8081:8081"
+
+  rest-book:
+    image: "rest-book:latest"
+    ports:
+      - "8080:8080"
