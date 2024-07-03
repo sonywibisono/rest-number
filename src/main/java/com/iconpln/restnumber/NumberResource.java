@@ -24,8 +24,8 @@ public class NumberResource {
     public Response generateBookNumbers() throws InterruptedException {
         LOG.info("Generation numbers");
         BookNumbers bookNumbers = new BookNumbers();
-        bookNumbers.setIsbn10(RandomStringUtils.randomAlphanumeric(10).toUpperCase());
-        bookNumbers.setIsbn13(RandomStringUtils.randomAlphanumeric(13).toUpperCase());
+        bookNumbers.setIsbn10(RandomStringUtils.randomNumeric(10).toUpperCase());
+        bookNumbers.setIsbn13(RandomStringUtils.randomNumeric(13).toUpperCase());
         bookNumbers.setAsin(RandomStringUtils.randomAlphanumeric(6).toUpperCase());
         bookNumbers.setEan8(RandomStringUtils.randomAlphanumeric(8).toUpperCase());
         bookNumbers.setEan13(RandomStringUtils.randomAlphanumeric(13).toUpperCase());
