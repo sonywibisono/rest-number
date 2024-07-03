@@ -2,9 +2,10 @@ package com.iconpln.restnumber;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import java.time.Instant;
 
+@RegisterForReflection
 public class BookNumbers {
     @JsonProperty("isbn_10")
     private String isbn10;
@@ -17,6 +18,7 @@ public class BookNumbers {
     private String ean13;
     @JsonIgnore
     Instant generationDate;
+    public BookNumbers(){}
 
     public String getIsbn10() {
         return isbn10;

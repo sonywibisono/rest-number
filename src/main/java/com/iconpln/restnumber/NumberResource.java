@@ -7,29 +7,28 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.github.javafaker.Faker;
 
 import java.time.Instant;
 
-@Path("/api/numbers/book")
+@Path("/book")
 @ApplicationScoped
 public class NumberResource {
     @ConfigDocMapKey("number.separator")
     boolean separator;
-    final Logger LOG = LoggerFactory.getLogger(NumberResource.class.getName());
+    private static Logger LOG = LoggerFactory.getLogger(NumberResource.class.getName());
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response generateBookNumbers() throws InterruptedException {
         LOG.info("Generation numbers");
-        Faker faker = new Faker();
         BookNumbers bookNumbers = new BookNumbers();
-        bookNumbers.setIsbn10(faker.code().isbn10(separator));
-        bookNumbers.setIsbn13(faker.code().isbn13(separator));
-        bookNumbers.setAsin(faker.code().asin());
-        bookNumbers.setEan8(faker.code().ean8());
-        bookNumbers.setEan13(faker.code().ean13());
+        bookNumbers.setIsbn10(RandomStringUtils.randomAlphanumeric(10).toUpperCase());
+        bookNumbers.setIsbn13(RandomStringUtils.randomAlphanumeric(13).toUpperCase());
+        bookNumbers.setAsin(RandomStringUtils.randomAlphanumeric(6).toUpperCase());
+        bookNumbers.setEan8(RandomStringUtils.randomAlphanumeric(8).toUpperCase());
+        bookNumbers.setEan13(RandomStringUtils.randomAlphanumeric(13).toUpperCase());
         bookNumbers.setGenerationDate(Instant.now());
         return Response.ok(bookNumbers).build();
 
